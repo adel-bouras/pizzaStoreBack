@@ -8,8 +8,9 @@ module.exports = (req , res , next)=>{
         return next(appError.createError( 401 , 'token is required' ));
     }
     try{
-        jwt.verify(token , process.env.JWT_KEY);
-        return next();
+        jwt.verify(token , process.env.JWT_KEY ,()=>{
+            return next();
+        });
     } catch(e){
         return next(appError.createError( 401 , 'invalid token' ));
     }

@@ -105,7 +105,7 @@ const sendOTP = asyncwrapper(async (req , res , next)=>{
             <p>Hi,</p>
             <p>Please verify your Pizza Hub account to continue.</p>
             <h3>Your code :</h3>
-            <h1>${OTP}</h1>
+            <h1>${otp}</h1>
             <p>Best regards 👋,<br>Pizza Hub Team</p>
         </div>
         <div class="footer">
@@ -115,10 +115,10 @@ const sendOTP = asyncwrapper(async (req , res , next)=>{
 </body>
 </html>
 
-    `;
+`;
 
     const mailOption = {
-        from : proces.env.EMAIL,
+        from : process.env.EMAIL,
         to : email,
         subject : 'Account verification',
         html : emailTemplate

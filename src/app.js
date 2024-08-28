@@ -13,7 +13,7 @@ app.all('*' , (req , res)=>{
     res.status(404).json({message : 'url not found'});
 });
 
-app.use((err , req , res)=>{
+app.use((err , req , res , next)=>{
     res.status(err.status || 500).json({message : err.message || 'internal server error'});
 });
 

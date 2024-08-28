@@ -6,10 +6,10 @@ const fs = require('node:fs');
 const PORT = process.env.PORT || 8000;
 
 const option = {
-    key : fs.readFilesync('./server.key'),
-    cert : fs.readFilesync('./server.cert')
+    key : fs.readFileSync('server.key' , 'utf8'),
+    cert : fs.readFileSync('./server.cert' , 'utf8')
 }
 
-https.createServer(option , app).listen(()=>{
-    console.log(`server running on port ${PORT}`);
-})
+https.createServer(option, app).listen(PORT, () => {
+    console.log(`🌍 Server running on port ${PORT} 🌍`);
+});

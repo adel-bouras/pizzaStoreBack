@@ -16,7 +16,12 @@ const verifyOTP = async (req, res, next) => {
         if (new Date() > otpRecord.expiresAt) {
             return res.status(400).json({ message: 'OTP has expired' });
         }
-
+        await OTP.findOneAndDelete(
+            { email },
+            { otp, expiresAt: new Date(Date.now() + 10 * 60 * 1000) },
+            { upsert: true }
+        );
+        
         next();
 };
 

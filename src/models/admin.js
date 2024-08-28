@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
 
 const adminSchema = new mongoose.Schema({
-    name : 'admin',
-    email : 'admin@pizzaHub.com',
-    password : 'admin'
+    name : {
+        type : String,
+        default : 'admin'
+    },
+
+    email : {
+        type : String,
+       default : 'admin@pizzaHub.com'
+    },
+    password : {
+        type : String,
+       default : 'admin'
+    }
 });
 
 

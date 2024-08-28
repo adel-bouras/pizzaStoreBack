@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         type : String
     },
     commands :{
-       type : [Product],
+       type : [mongoose.Schema.Types.ObjectId],
        default : []
     } ,
     token : {
@@ -22,6 +22,5 @@ const userSchema = new mongoose.Schema({
 
 });
 
-const User = mongoose.model('user' , userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('user' , userSchema);
+ 
