@@ -37,7 +37,7 @@ const sendOTP = asyncwrapper(async (req , res , next)=>{
             font-family: Arial, sans-serif;
             color: #333;
             line-height: 1.6;
-            max-width: 600px;
+            min-width: 90%;
             background-color: #f8e08e;
             margin: auto; 
         }
@@ -57,15 +57,6 @@ const sendOTP = asyncwrapper(async (req , res , next)=>{
             font-size: 12px;
             color: #777;
         }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #4CAF50;
-            text-decoration: none;
-            border-radius: 5px;
-        }
         .content h1 {
           color: #a20021;
             width: 100%;
@@ -73,21 +64,19 @@ const sendOTP = asyncwrapper(async (req , res , next)=>{
             font-size: 40px;
             margin: 0; 
         }
-
-        
         @media only screen and (max-width: 480px) { 
             .email-container {
                 width: 100%; 
-                padding: 10px; 
+                padding: 5px; 
             }
             .content {
-                padding: 15px; 
+                padding: 8px; 
             }
             .content h1 {
                 font-size: 30px; 
             }
             .button {
-                padding: 10px 15px; 
+                padding: 5px 8px; 
                 font-size: 14px; 
             }
             .footer {
@@ -128,8 +117,7 @@ const sendOTP = asyncwrapper(async (req , res , next)=>{
 
     transporter.sendMail(mailOption , (err , info)=>{
         if(err){
-            res.status(401).json({message : 'can\'t send email'});
-            return next( appError.createError(401 , 'FAIL to send email') )
+            return next( appError.createError(401 , "Fail sending email") )
         }
         res.status(200).json({message : "code send to the email successfully"});
     })

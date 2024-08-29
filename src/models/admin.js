@@ -8,7 +8,7 @@ const adminSchema = new mongoose.Schema({
 
     email : {
         type : String,
-       default : 'admin@pizzaHub.com'
+       default : 'admin@pizzahub.com'
     },
     password : {
         type : String,
