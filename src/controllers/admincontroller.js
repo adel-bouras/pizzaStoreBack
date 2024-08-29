@@ -36,13 +36,14 @@ const deleteUser = asyncwrapper(async (req , res , next)=>{
 });
 const add = asyncwrapper(async (req , res , next)=>{
     const images = req.files.map(( element )=>element.filename);
-    const product = new Product({
+    const product = Product({
         name : req.body.name,
         description : req.body.description,
         images,
         type : req.body.type
     });
     await product.save();
+    res.status(200).json({message : 'product added succesfully'});
 });
 
 module.exports = {

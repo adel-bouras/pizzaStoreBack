@@ -51,9 +51,13 @@ const products = asyncwrapper(async (req , res , next)=>{
 const command = asyncwrapper(async (req , res , next)=>{
     const user = await User.findById(req.body._id);
     const productId = req.body.productId;
-    const currentCommands = user.commands;
-    user.commands = [currentCommands , productId];
-    res.status(202).json({message : 'command successfull'});
+    if(!user.commands.includes(productId)){
+        user.commands.push(productId);
+        user.save();
+        res.status(202).json({message : 'command successfull'});
+    }else {
+        return next(appError.createError(401 , 'product already commanded'));
+    }
 });
 
 const details = asyncwrapper(async (req , res , next)=>{
