@@ -20,11 +20,11 @@ const users = asyncwrapper(async (req , res , next)=>{
     res.status(200).json({data : users});
 });
 const ProductDetails = asyncwrapper(async (req , res , next)=>{
-    const product = await Product.findById(req.body.productId);
+    const product = await Product.findById(req.query.productId);
     res.status(200).json({data : product});
 });
 const userDetails = asyncwrapper(async (req , res , next)=>{
-    const user = await User.findById(req.body._id);
+    const user = await User.findById(req.query._id);
     res.status(200).json({data : user});
 });
 const deleteProduct = asyncwrapper(async (req , res , next)=>{

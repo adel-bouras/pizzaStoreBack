@@ -19,7 +19,7 @@ const login = asyncwrapper(async (req , res , next)=>{
 
     user.token = token;
     await user.save();
-    res.status(201).json({message : 'login success' , token , _id : user._id});
+    res.status(201).json({message : 'login success' ,userName : user.userName ,token , _id : user._id});
 });
 
 const register = asyncwrapper(async (req , res , next)=>{
@@ -40,7 +40,7 @@ const register = asyncwrapper(async (req , res , next)=>{
 
     await user.save();
 
-    res.status(201).json({message : 'user registred successfully' , token : user.token , _id : user._id});
+    res.status(201).json({message : 'user registred successfully' , userName : user.userName , token : user.token , _id : user._id});
 });
 
 const products = asyncwrapper(async (req , res , next)=>{
@@ -61,12 +61,12 @@ const command = asyncwrapper(async (req , res , next)=>{
 });
 
 const details = asyncwrapper(async (req , res , next)=>{
-    const product = await Product.findById(req.body.productId);
+    const product = await Product.findById(req.query.productId);
     res.status(200).json({data : product});
 });
 
 const listCommands = asyncwrapper(async (req , res , next)=>{
-    const user = await User.findById(req.body._id);
+    const user = await User.findById(req.query._id);
     const products = await Product.find({
         _id : {$in : user.commands}
     });
